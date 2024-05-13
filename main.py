@@ -96,6 +96,8 @@ async def main_callback_handler(call: CallbackQuery):
         await command_start_handler(message)
     elif data == 'disconnect':
         await disconnect_wallet(message)
+    elif data == 'invite':
+        await routes.refferal.handler(message)
     else:
         data = data.split(':')
         if data[0] == 'connect':

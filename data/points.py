@@ -1,6 +1,7 @@
+import config
 from tc_storage import TcStorage
 
-async def add(chat_id: int, count: int = 100):
+async def add(chat_id: int, count: int = config.INVITE_BONUS):
     storage = TcStorage(chat_id)
     points = await storage.get_item('points')
     if points is None:
