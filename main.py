@@ -99,6 +99,10 @@ async def main_callback_handler(call: CallbackQuery):
         await disconnect_wallet(message)
     elif data == 'invite':
         await routes.refferal.handler(message)
+    elif data == 'subscribe':
+        await routes.subscribe.handler(message)
+    elif data == 'check_subscribe':
+        await routes.subscribe.check(message)
     else:
         data = data.split(':')
         if data[0] == 'connect':

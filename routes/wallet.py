@@ -31,7 +31,7 @@ async def handler(message: Message):
     )
     mk_b.row(
         InlineKeyboardButton(text='Пригласить', callback_data='invite'),
-        InlineKeyboardButton(text='Бонус за подписку', callback_data='bonus')
+        InlineKeyboardButton(text='Бонус за подписку', callback_data='subscribe')
     )
     mk_b.row(
         InlineKeyboardButton(text='Отключить кошелёк', callback_data='disconnect')
