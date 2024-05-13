@@ -1,5 +1,6 @@
 # tg-coinbot
 ![TON](https://img.shields.io/badge/TON-blue) ![Telegram](https://img.shields.io/badge/Telegram-blue) ![Python](https://img.shields.io/badge/Python-blue)
+
 **[WIP]** Telegram бот для TON Jetton. Проверяет наличие указанного в конфиге жеттона, выдает бонусы за подписку на канал и за приглашение друзей.
 
 ### Возможности
