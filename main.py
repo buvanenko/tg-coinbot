@@ -3,34 +3,31 @@
 import sys
 import logging
 import asyncio
-import time
 
-import pytonconnect.exceptions
 from pytoniq_core import Address
 from pytonconnect import TonConnect
 
-import config
 from connector import get_connector
 
-from aiogram import Bot, Dispatcher, F
-from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart, Command
+from aiogram import F
+from aiogram.filters import CommandStart
 from aiogram.types import Message, CallbackQuery
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
-
+from bot import bot, dp
 import routes
-import routes.wallet
+import data
 
 
 logger = logging.getLogger(__file__)
 
-dp = Dispatcher()
-bot = Bot(config.TOKEN, parse_mode=ParseMode.HTML)
-
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message):
+    if " " in message.text:
+        refferal = int(message.text.split(" ")[1])
+        await data.referral.save(message.chat.id, refferal)
+
     chat_id = message.chat.id
     connector = get_connector(chat_id)
     connected = await connector.restore_connection()
@@ -38,7 +35,6 @@ async def command_start_handler(message: Message):
     mk_b = InlineKeyboardBuilder()
     if connected:
         await routes.wallet.handler(message)
-
     else:
         wallets_list = TonConnect.get_wallets()
         for wallet in wallets_list:
@@ -64,7 +60,7 @@ async def connect_wallet(message: Message, wallet_name: str):
     generated_url = await connector.connect(wallet)
 
     mk_b = InlineKeyboardBuilder()
-    mk_b.button(text='Connect', url=generated_url)
+    mk_b.button(text='Подключить', url=generated_url)
 
     await message.answer(text='Подключите кошелёк в течение 3 минут', reply_markup=mk_b.as_markup())
 

@@ -5,6 +5,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 from connector import get_connector
 from utils.tonapi import jetton_balance
+import data
 
 import config
 
@@ -16,8 +17,13 @@ async def handler(message: Message):
     wallet_address = Address(wallet_address).to_str(is_bounceable=False)
 
     balance = await jetton_balance(wallet_address)
+    points = await data.points.get(chat_id)
+    invited = await data.referral.get(chat_id)
 
-    text = f'Ваш баланс: {balance} {config.JETTON_SYMBOL}'
+    text = f'💎 Ваш баланс: {balance} {config.JETTON_SYMBOL}\n'
+    text += f'🏦 Доступно к выводу: {points} {config.JETTON_SYMBOL}\n'
+    text += f'👥 Приглашено: {invited} человек'
+
 
     mk_b = InlineKeyboardBuilder()
     mk_b.row(
