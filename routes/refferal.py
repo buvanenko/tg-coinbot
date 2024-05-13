@@ -15,6 +15,6 @@ async def handler(message: Message):
 
     link = config.BOT_LINK + f'?start={chat_id}'
 
-    text = f'🔗 Ваша реферальная ссылка: {link}\n\Получите {config.INVITE_BONUS} {config.JETTON_SYMBOL} за каждого пришлашенного друга!'
+    text = f'🔗 Ваша реферальная ссылка: {link}\nПолучите {config.INVITE_BONUS} {config.JETTON_SYMBOL} за каждого пришлашенного друга!'
 
     await message.answer(text=text)
