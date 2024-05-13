@@ -19,6 +19,10 @@ from aiogram.types import Message, CallbackQuery
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 
+import routes
+import routes.wallet
+
+
 logger = logging.getLogger(__file__)
 
 dp = Dispatcher()
@@ -33,8 +37,7 @@ async def command_start_handler(message: Message):
 
     mk_b = InlineKeyboardBuilder()
     if connected:
-        mk_b.button(text='Отключиться', callback_data='disconnect')
-        await message.answer(text='Вы уже подключены!', reply_markup=mk_b.as_markup())
+        await routes.wallet.handler(message)
 
     else:
         wallets_list = TonConnect.get_wallets()
