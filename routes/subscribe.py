@@ -6,7 +6,7 @@ from connector import get_connector
 import config
 
 from bot import bot
-from data import subscribe
+from data import subscribe, points
 
 async def handler(message: Message):
     chat_id = message.chat.id
@@ -16,7 +16,7 @@ async def handler(message: Message):
         await message.answer('Подключите кошелёк!')
         return
 
-    text = f'🔗 Подпишитесь на канал, чтобы получить бонус {config.INVITE_BONUS*5} {config.JETTON_SYMBOL}!'
+    text = f'🔗 Подпишитесь на канал, чтобы получить бонус {config.SUBSCRIBE_BONUS} {config.JETTON_SYMBOL}!'
     mk_b = InlineKeyboardBuilder()
     mk_b.row(
         InlineKeyboardButton(text=f'Подписаться', url=config.CHANNEL_LINK)
@@ -35,7 +35,8 @@ async def check(message: Message):
         return
     member = await bot.get_chat_member(config.CHANNEL_ID, chat_id)
     if member.status == 'member' or member.status == 'creator' or member.status == 'administrator':
-        await message.answer(f'🎉 Вы подписаны на канал и получили бонус {config.INVITE_BONUS*5} {config.JETTON_SYMBOL}!')
+        await points.add(chat_id, config.SUBSCRIBE_BONUS)
+        await message.answer(f'🎉 Вы подписаны на канал и получили бонус {config.SUBSCRIBE_BONUS} {config.JETTON_SYMBOL}!')
         await subscribe.set(chat_id)
     else:
         await message.answer('❌ Вы не подписаны на канал!')
