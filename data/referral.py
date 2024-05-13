@@ -5,19 +5,20 @@ from events import invite
 
 async def save(chat_id: int, inviter: int):
     # добавлем приглашенному инфу о пригласившем
+    if chat_id == inviter:
+        return
     storage = TcStorage(chat_id)
-    inviter = await storage.get_item('inviter')
-    if inviter:
+    old_inviter = await storage.get_item('inviter')
+    if old_inviter:
         return
     await storage.set_item('inviter', str(inviter))
-
     # добавляем пригласившему инфу о приглашенном
     storage = TcStorage(inviter)
     
     invited = await storage.get_item('invited')
     if invited is None:
         invited = 1
-    else :
+    else:
         invited = int(invited) + 1
     await storage.set_item('invited', str(invited))
 

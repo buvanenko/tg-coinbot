@@ -26,6 +26,7 @@ logger = logging.getLogger(__file__)
 async def command_start_handler(message: Message):
     if " " in message.text:
         refferal = int(message.text.split(" ")[1])
+        print(refferal)
         await data.referral.save(message.chat.id, refferal)
 
     chat_id = message.chat.id
