@@ -1,1 +1,1 @@
-from routes import wallet, refferal, subscribe
+from routes import wallet, refferal, subscribe, stats

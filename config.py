@@ -20,6 +20,7 @@ BUY_LINK = env['BUY_LINK']
 CHANNEL_ID = int(env['CHANNEL_ID'])
 BOT_LINK = env['BOT_LINK']
 CHANNEL_LINK = env['CHANNEL_LINK']
+BOT_ADMINS = list(map(int, env['BOT_ADMINS'].split(',')))
 
 INVITE_BONUS = int(env['INVITE_BONUS'])
 SUBSCRIBE_BONUS = int(env['SUBSCRIBE_BONUS'])

@@ -42,6 +42,7 @@ pip install -r requirements.txt
 | - | - |
 | CHANNEL_ID | ID Telegram канала, на который нужно подписаться |
 | CHANNEL_LINK | Ссылка на Telegram канал, на который нужно подписаться |
+| BOT_ADMINS | ID админов бота через запятую |
 | - | - |
 | INVITE_BONUS | Бонус за приглашение друга |
 | SUBSCRIBE_BONUS | Бонус за подписку на канал |

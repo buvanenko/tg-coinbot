@@ -1,1 +1,1 @@
-from data import referral, points, subscribe
+from data import referral, points, subscribe, stats
