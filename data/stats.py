@@ -1,6 +1,7 @@
 from db import client
 from dataclasses import dataclass
 
+
 @dataclass
 class Stats:
     connections: int
