@@ -110,8 +110,11 @@ async def main_callback_handler(call: CallbackQuery):
 
 
 async def main() -> None:
+    for router in routes.command_routers:
+        dp.include_router(router)
     await bot.delete_webhook(drop_pending_updates=True)  # skip_updates = True
     await dp.start_polling(bot)
+
 
 
 if __name__ == "__main__":
